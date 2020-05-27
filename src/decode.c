@@ -121,8 +121,10 @@ static int l8w8jwt_parse_claims(chillbuff* buffer, char* json, const size_t json
 
         if (i >= r || key.type != JSMN_STRING)
         {
-            r = L8W8JWT_DECODE_FAILED_INVALID_TOKEN_FORMAT;
-            goto exit;
+            //HACK: ignore nested claims
+            continue;
+            //r = L8W8JWT_DECODE_FAILED_INVALID_TOKEN_FORMAT;
+            //goto exit;
         }
 
         switch (value.type)
